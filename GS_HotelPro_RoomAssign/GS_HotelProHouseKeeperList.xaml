@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="GS_HotelPro_RoomAssign.GS_HotelProHouseKeeperList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GS_HotelPro_RoomAssign"
+             mc:Ignorable="d" 
+             xmlns:domain="clr-namespace:GS_HotelPro_RoomAssign"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            >
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <x:Array x:Key="WindowCommandsOverlayBehaviorArray" Type="Controls:WindowCommandsOverlayBehavior">
+                <Controls:WindowCommandsOverlayBehavior>Always</Controls:WindowCommandsOverlayBehavior>
+                <Controls:WindowCommandsOverlayBehavior>Flyouts</Controls:WindowCommandsOverlayBehavior>
+                <Controls:WindowCommandsOverlayBehavior>HiddenTitleBar</Controls:WindowCommandsOverlayBehavior>
+                <Controls:WindowCommandsOverlayBehavior>Never</Controls:WindowCommandsOverlayBehavior>
+            </x:Array>
+
+            <domain:HKP_CurrentItemConverter x:Key="CurrentItemConverter"/>
+            <FontFamily x:Key="FontAwesome">/GS_HotelPro_RoomAssign;Component/Fonts/#FontAwesome</FontFamily>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <WrapPanel Margin="3 0 3 8" >
+
+
+        <!--
+            For the Card styled <Flipper />, bring in this resource dictionary (see top of this file)
+            pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml        
+        -->
+        <Grid Height="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Height="auto" Width="auto">
+                <StackPanel Background="{DynamicResource AccentColorBrush}" Grid.Row="0"  VerticalAlignment="Top" Height="35">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Foreground="WhiteSmoke" Text="&#xf0c0;"  FontFamily="{StaticResource FontAwesome}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5 5 0 0" />
+                        <TextBlock  Foreground="WhiteSmoke" Text="HouseKeeper List" FontWeight="SemiBold"  FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 8 0 0" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+           
+                <Grid Grid.Row="1" MaxHeight="200" Height="auto" Width="auto">
+                <ScrollViewer>
+                    <ItemsControl Grid.Column="0" Grid.Row="0" x:Name="rptListItems" ItemsSource="{Binding housekeepers,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" MinWidth="250">
+                    
+                    <ItemsControl.ItemTemplate>
+                        
+                            <!--IsChecked="{Binding IsSelected,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"-->
+                        <DataTemplate DataType="{x:Type domain:Staff}">
+                            
+                                <Border x:Name="Border" Padding="3" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="Checkerz"  />
+                                        <ColumnDefinition />
+
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition SharedSizeGroup="Checkerz"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Margin="0 0 0 0" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" Orientation="Horizontal">
+
+                                        <TextBlock Foreground="#9FA8DA"  Text="&#xf007;"  FontFamily="{StaticResource FontAwesome}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 5 0 0" />
+                                        <TextBlock  FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 5 0 0" >
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource CurrentItemConverter}">
+                                                        <Binding Path="Name"/>
+                                                        <Binding ElementName="rptListItems" Path="ItemsSource"/>
+                                                        <Binding Path="StaffId"/>
+                                                        <Binding ElementName="chk_selected"
+                                                            Path="IsChecked" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                    </StackPanel>
+                                    <ToggleButton x:Name="chk_selected" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0"
+                                        Style="{StaticResource MaterialDesignActionLightToggleButton}"              
+                                          Background="Transparent"
+                                                                      FontFamily="{StaticResource FontAwesome}" 
+                                                                 Click="ButtonClicked"
+                                                       IsChecked="{Binding Path=IsSelected,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                          >
+                                            <ToggleButton.Content>
+                                                <Label Content="&#xf046;"/>
+                                            </ToggleButton.Content>
+                                            <materialDesign:ToggleButtonAssist.OnContent>
+                                                <Label Content="&#xf046;" Foreground="Blue"/>
+                                            </materialDesign:ToggleButtonAssist.OnContent>
+                                        </ToggleButton>
+                                   
+                                  
+                                </Grid>
+                            </Border>
+                           
+                            <DataTemplate.Triggers>
+
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                            
+                        </DataTemplate>
+                        
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+
+                </ScrollViewer>
+            </Grid>
+            
+        </Grid>
+    </WrapPanel>
+
+</UserControl>

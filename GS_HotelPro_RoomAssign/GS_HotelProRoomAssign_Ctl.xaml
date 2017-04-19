@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="GS_HotelPro_RoomAssign.CustomRoomAssign"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:domain="clr-namespace:GS_HotelPro_RoomAssign"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        
+        <ResourceDictionary>
+            <x:Array x:Key="WindowCommandsOverlayBehaviorArray" Type="Controls:WindowCommandsOverlayBehavior">
+                <Controls:WindowCommandsOverlayBehavior>Always</Controls:WindowCommandsOverlayBehavior>
+                <Controls:WindowCommandsOverlayBehavior>Flyouts</Controls:WindowCommandsOverlayBehavior>
+                <Controls:WindowCommandsOverlayBehavior>HiddenTitleBar</Controls:WindowCommandsOverlayBehavior>
+                <Controls:WindowCommandsOverlayBehavior>Never</Controls:WindowCommandsOverlayBehavior>
+            </x:Array>
+            
+            <domain:CurrentItemConverter x:Key="CurrentItemConverter"/>
+            <domain:CleanStatusColorConverter x:Key="CleanStatusColorConverter"/>
+            <FontFamily x:Key="FontAwesome">/GS_HotelPro_RoomAssign;Component/Fonts/#FontAwesome</FontFamily>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+        <WrapPanel Margin="3 0 3 8" >
+        
+
+            <!--
+            For the Card styled <Flipper />, bring in this resource dictionary (see top of this file)
+            pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml        
+        -->
+        <Grid Height="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Height="auto" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Background="{DynamicResource AccentColorBrush}" Grid.Row="0" Grid.ColumnSpan="2"  VerticalAlignment="Stretch" >
+
+                    <TextBlock  Foreground="White" Text="&#xf05a;"  FontFamily="{StaticResource FontAwesome}" FontSize="30" HorizontalAlignment="Left" Margin="10 0 0 0" VerticalAlignment="Center" TextWrapping="Wrap" />
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Height="auto" Width="auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Background="{DynamicResource AccentColorBrush2}" Grid.Row="1" Grid.ColumnSpan="2"   VerticalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Foreground="#C5CAE9" Text="&#xf007;"  FontFamily="{StaticResource FontAwesome}" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 3 0 0" />
+                        <TextBlock  Foreground="#E8EAF6" Text="{Binding hkpname}"   FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 3 0 0" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2" Height="auto" Width="auto">
+                <ItemsControl Grid.Column="0" Grid.Row="0" x:Name="rptListItems" ItemsSource="{Binding Task_Assign,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" MinWidth="200">
+
+                    <ItemsControl.ItemTemplate>
+                        <!--IsChecked="{Binding IsSelected,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"-->
+                        <DataTemplate DataType="{x:Type domain:Task_Assign}">
+                            <Border x:Name="Border" Padding="3" BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="Checkerz" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition SharedSizeGroup="Checkerz"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock   Foreground="{Binding room_HK_Status_Id,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource CleanStatusColorConverter}}" Text="&#xf015;"  FontFamily="{StaticResource FontAwesome}" FontSize="25" HorizontalAlignment="Left" Margin="5 2 0 0" VerticalAlignment="Top" TextWrapping="Wrap" />
+                                    <StackPanel Margin="0 0 0 0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left">
+                                        <TextBlock  FontWeight="Bold" HorizontalAlignment="Left">
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource CurrentItemConverter}">
+                                                    <Binding Path="roomNo"/>
+                                                    <Binding ElementName="rptListItems" Path="ItemsSource"/>
+                                                    <Binding ElementName="chk_selected"
+                                                            Path="IsChecked" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding roomName}" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <ToggleButton x:Name="chk_selected" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                        Style="{StaticResource MaterialDesignActionLightToggleButton}"              
+                                          
+                                                                      FontFamily="{StaticResource FontAwesome}" 
+                                                                 Click="ButtonClicked"
+                                                       IsChecked="{Binding Path=IsSelected,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                          Content="&#xf00b;">
+                                    </ToggleButton>
+
+
+                                </Grid>
+                            </Border>
+
+                            <DataTemplate.Triggers>
+
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Controls:Flyout x:Name="FilterFlyOut" 
+                             Header="Edit"
+                             Position="Right"
+                             Theme="Dark"
+                             Opacity="80"
+                             Background="{DynamicResource AccentBaseColorBrush}"
+                             MinHeight="200"
+                             >
+                    <Grid Width="200" Margin="2" >
+                        
+
+                        <ItemsControl Grid.Column="0" Grid.Row="0" ItemsSource="{Binding CurrentItem,UpdateSourceTrigger=PropertyChanged}" MinWidth="150">
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type domain:Task_Assign}">
+                                    <Grid Width="150">
+                                    <StackPanel  Margin="5 0 0 0" HorizontalAlignment="Stretch" Orientation="Vertical" >
+                                        <!--<TextBox materialDesign:HintAssist.Hint="RoomNo"  materialDesign:HintAssist.HintOpacity=".50" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Margin="0,10,0,0" Text="{Binding roomNo}" HorizontalAlignment="Stretch" Foreground="White"/>
+                                        <TextBox materialDesign:HintAssist.Hint="RoomName" materialDesign:HintAssist.HintOpacity=".50" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  Margin="0,10,0,0" Text="{Binding roomName}" Foreground="White"/>-->
+                                            <ComboBox  materialDesign:HintAssist.Hint="HouseKeepingStatus" Style="{StaticResource MaterialDesignFloatingHintComboBox}" IsEditable="True" 
+                                                       materialDesign:HintAssist.HintOpacity=".28" Margin="0,10,0,0"
+                                                       ItemsSource="{Binding room_HouseKeeping_Status}"
+                                                       DisplayMemberPath="Room_HouseKeeping_Name"
+                                                       SelectedValuePath="Room_HKStatus_ID"
+                                                       SelectedValue="{Binding room_HK_Status_Id}"
+                                                       Foreground="White"
+                                                       />
+                                            
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Controls:Flyout>
+                
+            </Grid>
+        </Grid>
+    </WrapPanel>
+    
+</UserControl>
+
